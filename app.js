@@ -1,55 +1,49 @@
+let form = document.getElementById('form');
+let popup = document.getElementById('popup');
+let popup_image = document.getElementById('popup_image');
 
-window.onload = function () {
+emailjs.init("CPyUyvvACKP5yraVL");
 
-    let url = 0;
-    let options = 1;
+// отправка
 
-    let promise = fetch(url, [options]);
-
-    promise;
-
-    // функция очистки
-    function cleanForm() {
-        // загоняем все поля в переменную
-        let clean = document.querySelectorAll('.clean');
-        //циклом проходимся по ним и обнуляем значение
-        for (let item of clean) {
-            item.value = '';
-        }
+// функция очистки
+function cleanForm() {
+    // загоняем все поля в переменную
+    let clean = document.querySelectorAll('.clean');
+    //циклом проходимся по ним и обнуляем значение
+    for (let item of clean) {
+        item.value = '';
     }
+}
 
-    // Функция отправки формы fetch
-    async function postData(url= '', data = {}) {
-        const response = await fetch(url, {
-            method: "POST",
-            body: data
-        });
-        return await  response.json();
-    }
-
-    // отправка
-    let form = document.getElementById('form'); // переменная с формой
-    // при отправке формы любым способом
     form.addEventListener('submit', function (event) {
         // запрещаем стандартное действие
         event.preventDefault();
         // создаем объект новый
         let data = new FormData(form);
-        // передаем в фукцию fetch данные и получаем результат
-        postData('send.php', data).then((data) => {
-            // обработка ответа от сервера
-            console.log(data);
-            if (data.error == '') {
-                alert(data.success);
-                cleanForm();
-            } else if (data.email !== '') {
-                alert(data.email);
-            } else {
-                alert(data.error);
-            }
-        })
+        var templateParams = {
+            from_name: data.get('from_name'),
+            from_email: data.get('from_email'),
+            message: data.get('message')
+        };
+        emailjs.send('service_qnfuj4r', 'template_jbs9mzn', templateParams)
+            .then(function (response) {
+                console.log('SUCCESS!', response.status, response.text);
+            }, function (error) {
+                console.log('FAILED...', error);
+            });
+        cleanForm();
 
     })
 
-};
+let isHidden = true;
+function ShowImagePopup(image) {
+    popup_image.src = image;
+    popup.style = isHidden ? "visibility:visible;" :"visibility:hidden;"
+    isHidden = !isHidden;
+}
 
+function HidePopup() {
+    popup.style = "visibility:hidden;"
+    isHidden = true;
+}
