@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div id='app1'>
+    </div>
+
+    <div id='app'>
+        <div class="header">
+            <div class="container">
+                <div class="logo">ToDo List</div>
+                <form class="form" v-on:submit.prevent="addNewTodoItem">
+                    <input type="text" v-model="newtodoitem">
+                    <button class="btn">Добавление новой задачи</button>
+                </form>
+            </div>
+        </div>
+        <div>
+            <h2>Выполненные дела</h2>
+            <div class="todo-header">
+                <div class="sort" v-on:click="Sort">
+                    <i class="fa-solid fa-sort"></i>
+                </div>
+            </div>
+        </div>
+        <ul id="done_tasks">
+            <li v-for="(item, index) in items" :key="item.id" v-if="item.completed">
+                <div class="todo-item">
+                    <div>
+                        <button :id="index" class="btn-remove" v-on:click="RemoveTodoItem(index)">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                        <span>{{ item.title }}</span>
+                    </div>
+                    <input type="checkbox" checked disabled />
+                </div>
+            </li>
+        </ul>
+        <div>
+            <h2>Невыполненные дела</h2>
+            <div class="todo-header">
+                <div class="sort" v-on:click="Sort">
+                    <i class="fa-solid fa-sort"></i>
+                </div>
+            </div>
+        </div>
+        <ul id="undone_tasks">
+            <li v-for="(item, index) in items" :key="item.id" v-if="!item.completed">
+                <div class="todo-item">
+                    <div>
+                        <button :id="index" class="btn-remove" v-on:click="RemoveTodoItem(index)">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                        <span>{{ item.title }}</span>
+                    </div>
+                    <input type="checkbox" disabled />
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>

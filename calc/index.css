@@ -1,0 +1,292 @@
+:root{
+    --calc-width: 500px;
+    --calc-height: 600px;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+body{
+    background-color: #efeeee;
+    min-width: var(--calc-width);
+    min-height: var(--calc-height);
+    font-family: 'Roboto', Helvetica, sans-serif;
+}
+#main{
+    width: var(--calc-width);
+    height: var(--calc-height);
+    background: url("./img/background.png");
+    top: calc(50vh - 300px);
+    left: calc(50vw - 250px);
+    position: relative;
+}
+
+#controls {
+    opacity: 0.7;
+    padding: 83px 30px 45px 30px;
+    height: -webkit-fill-available;
+}
+
+#display {
+    height: 120px;
+    position: relative;
+}
+
+#display input{
+    border: none;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+    margin: 20px 40px 10px 40px;
+    background-color: #ffffff00;
+    text-align: end;
+    color: #000000d9;
+    font-weight: 600;
+    padding: 10px;
+    letter-spacing: 1px;
+    font-family: 'calculator';
+    font-size: xxx-large;
+}
+
+#opDisplay {
+    position: absolute;
+    bottom: 8px;
+    color: black;
+    font-family: 'calculator';
+    padding: 0px 55px 0 45px;
+    width: -webkit-fill-available;
+    text-align: end;
+}
+
+#memory{
+    visibility: hidden;
+    border: 1px solid #0000009c;
+    font-family: 'helvetica';
+    text-align: center;
+    position: absolute;
+    top: 17px;
+    left: 65px;
+    width: 55px;
+    height: 12px;
+    font-size: x-small;
+}
+
+#buttons-container {
+    background-color: none;
+    height: 350px;
+    display: grid;
+    grid-template-columns: 85px 85px 85px 11px 85px 85px;
+    grid-template-rows: 39px 58px 63px 63px 63px 63px;
+    grid-template-areas: 
+    "aa     aa          aa      aa aa      aa"
+    "mrc    m_plus      m_minus br plus-minus     onoff"
+    "seven  eight       nine    br percent        backspace"
+    "four   five        six     br multiplication division"
+    "one    two         three   br add            substraction"
+    "zero   doublezero  dot     br add            equal"
+}
+
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button:hover{
+    cursor: pointer;
+    box-shadow: 0px -1px 2px 1px #f0f0f0 !important;
+    
+}
+.button.digit {
+    width: 72px;
+    height: 46px;
+    background-color: rgb(133, 140, 137);
+    border-radius: 8px;
+    margin: 9px 5px 5px 5px;
+    font-size: xx-large;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0px -1px 2px 0px #fff;
+}
+
+.button.memory {
+    width: 70px;
+    height: 46px;
+    background-color: #131313;
+    border-radius: 15px;
+    margin: 5px;
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0px -1px 1px 1px #f5f5f59e;
+    border-bottom: 1px solid #76727296;
+}
+
+.button.operations {
+    width: 70px;
+    height: 46px;
+    background-color: #dfee10;
+    border-radius: 8px;
+    margin: 5px;
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+}
+
+.button.function {
+    width: 70px;
+    height: 46px;
+    background-color: #131313;
+    border-radius: 8px;
+    margin: 9px 5px 5px 5px;
+    font-size: xx-large;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0px -1px 1px 1px #f5f5f59e;
+    border-bottom: 1px solid #76727296;
+}
+
+.button.function.onoff{
+    width: 70px;
+    height: 46px;
+    background-color: #ee8610;
+    border-radius: 8px;
+    margin: 5px;
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0px -1px 2px 0px #fff;
+}
+
+.button.function.plus-minus{
+    width: 70px;
+    height: 46px;
+    background-color: #131313;
+    border-radius: 8px;
+    margin: 5px;
+    font-size: x-large;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0px -1px 2px 0px #fff;
+}
+
+.button.function.add{
+    width: 70px;
+    height: -webkit-fill-available;
+    background-color: #131313;
+    border-radius: 8px;
+    margin: 9px 5px 8px 5px;
+    font-weight: 700;
+    color: white;
+    box-shadow: 0px -1px 2px 0px #fff;
+}
+
+.button.function.backspace{
+
+}
+.button.function.backspace svg{
+    fill:#fff;
+    width: 40px;
+    height: 40px;
+}
+.one{
+    grid-area: one;
+}
+
+.two{
+    grid-area: two;
+}
+
+.three{
+    grid-area: three;
+}
+
+.four{
+    grid-area: four;
+}
+
+.five{
+    grid-area: five;
+}
+
+.six{
+    grid-area: six;
+}
+
+.seven{
+    grid-area: seven;
+}
+
+.eight{
+    grid-area: eight;
+}
+
+.nine{
+    grid-area: nine;
+}
+
+.mem-clear{
+    grid-area: mrc;
+}
+
+.mem-plus{
+    grid-area: m_plus;
+}
+
+.mem-minus{
+    grid-area: m_minus;
+}
+
+.zero{
+    grid-area: zero;
+}
+
+.doublezero{
+    grid-area: doublezero;
+}
+
+.dot{
+    grid-area: dot;
+}
+
+.plus-minus{
+    grid-area: plus-minus;
+}
+
+.percent{
+    grid-area: percent;
+}
+
+.multiplication{
+    grid-area: multiplication;
+}
+
+.add{
+    grid-area: add;
+}
+
+.onoff{
+    grid-area: onoff;
+}
+
+.backspace{
+    grid-area: backspace;
+}
+
+.division{
+    grid-area: division;
+}
+
+.substraction{
+    grid-area: substraction;
+}
+
+.equal{
+    grid-area: equal;
+}
+

@@ -48,24 +48,22 @@ function HidePopup() {
     isHidden = true;
 }
 
-const swiper = new Swiper('.swiper', {
-    // Optional parameters
-    direction: 'vertical',
-    loop: true,
-  
-    // If we need pagination
-    pagination: {
-      el: '.swiper-pagination',
-    },
-  
-    // Navigation arrows
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-  
-    // And if we need scrollbar
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
-  });
+function RunToDoApp() {
+    window.open('./todo/index.html', '_blank', 'location=yes,scrollbars=yes,status=yes');
+}
+
+function RunCalcApp() {
+    window.open('./calc/index.html', '_blank', 'location=yes,height=570,width=520,scrollbars=yes,status=yes');
+}
+
+function RunSstApp() {
+    params = [
+        'height=' + screen.height,
+        'width=' + screen.width,
+        'location=yes',
+        'scrollbars=yes',
+        'status=yes',
+        'fullscreen=yes' // only works in IE, but here for completeness
+    ].join(',');
+    window.open('./sst/index1.html', '_blank');
+}
